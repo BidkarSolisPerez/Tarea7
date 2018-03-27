@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?PHP
+
+    date_default_timezone_set('UTC');
+
     $path = "data.json";
 
     if (!file_exists($path))
@@ -8,6 +11,32 @@
     $json = json_decode($data, true);
 
     $file = fopen($path, "w");
+
+    $factActual = "";
+
+    $factura = array(
+        'numero' => 10,
+        'fecha' => date("m/d/Y"),
+        'cliente' => 'Jose',
+        'impuesto' => 0.13,
+        'productos' => array(
+            array('cantidad' => 2,
+            'descripcion' => 'caja de leche',
+            'valorUnitario' => 500,
+            'subtotal'),
+            array('cantidad' => 2,
+            'descripcion' => 'cepillo diente',
+            'valorUnitario' => 250,
+            'subtotal' => 'cantidad' * 'valorUnitario')
+        ),
+        'montoTotal' => 'impuesto' * calcularMonto()
+    );
+
+    $facturas = array();
+
+    function calcularMonto(){
+
+    }
 
     
 
@@ -57,9 +86,19 @@
     <div id="panel-der">
         <center>
             <h1>Billing detail</h1>
-
-
         </center>
+
+        <?PHP
+            if(!$factActual){
+                echo '<label>Numero Factura: <input type="text" name="numFactura" /></label>';
+                echo '<label>Fecha: <input type="date" name="numFactura" /><label><br/>';
+                echo '<label>Nombre Cliente: <input type="text" name="cliente" /><label><br/>';
+            }else{
+
+
+            }
+        ?>
+
     </div>
 
 </body>
