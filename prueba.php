@@ -1,14 +1,33 @@
 <?PHP
 
     class Producto{
-        private $cantidad;
-        private $descripcion;
-        private $valorUnit;
-        private $subTotal;
+        public $cantidad;
+        public $descripcion;
+        public $valorUnit;
+        public $subTotal;
 
-        
+        public function __construct($cantidad, $descripcion, $valorUnit){
+            echo "Ingreso al constructor.";
+            $this->cantidad = $cantidad;
+            $this->descripcion = $descripcion;
+            $this->valorUnit = $valorUnit;
+            $this->subTotal = $this->calcSub();
+        }
+
+        function setCantidad($new_cant){
+            $this->cantidad = $new_cant;
+        }
+
+        function calcSub(){
+            return $this->cantidad * $this->valorUnit;
+        }
+
+        function getInfo(){
+            return "El producto es: ". $this->descripcion;
+        }
     }
 
+    /*
     class Factura{
         private static $numero;
         private $fecha;
@@ -33,21 +52,11 @@
             return 'El nombre del cliente es: ' . $cliente;
         }
 
-    }
+    }*/
 
-    class person {
-		var $name;
-		function set_name($new_name) {
-			$this->name = $new_name;
-		}
-		function get_name() {
-			return $this->name;
-		}
-	}
+    echo "<h1>Prueba de clases</h1>";
+    $product = new Producto(2,'caja de leche', 1200);
+    echo $product->getInfo();
 
-    $factura = new Factura('Bidkar');
-    echo $factura -> mostrarDatos();
-
-    echo "Hola mundo!";
 
 ?>
